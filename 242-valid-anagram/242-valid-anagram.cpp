@@ -1,23 +1,26 @@
 class Solution {
 public:
-    
     bool isAnagram(string s, string t) {
-        map<char,int> brinto;
+        int arr[26]={0};
         if(s.size()!=t.size())
         {
             return false;
         }
         for(int i=0;i<s.size();i++)
         {
-            brinto[s[i]]++;
+            arr[s[i]-'a']++;
         }
         for(int i=0;i<t.size();i++)
         {
-            brinto[t[i]]--;
+            if(arr[t[i]-'a']>=1)
+            {
+                arr[t[i]-'a']--;
+            }
+            
         }
-        for(int i=0;i<s.size();i++)
+        for(int i=0;i<26;i++)
         {
-            if(brinto[s[i]]!=0)
+            if(arr[i]>=1)
             {
                 return false;
             }
